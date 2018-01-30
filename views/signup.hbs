@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <form id="signup" method="post">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input name="email" type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+		<div class="form-group">
+          <label for="displayName">Nombre</label>
+          <input name="displayName" type="text" class="form-control" id="displayName" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password</label>
+          <input name="text" type="password" class="form-control" id="pwd" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const formSignUp = document.querySelector('#signup')
+  const formData = new FormData(formSignUp)
+
+  formSignUp.addEventListener('submit', (event)=> {
+    event.preventDefault()
+    fetch('/api/signup', {
+      method: 'POST',
+      body: formData
+    })
+	.then(res => res.json())
+    .then(data => console.log(data.token))
+  })
+</script>
